@@ -1,0 +1,346 @@
+// Dominique Houston
+// 1309 -- ASDI
+// 
+
+@charset "UTF-8";
+/* CSS Resets & Global Style Fixes */
+body,a,p,header,footer {
+	margin:0px;
+	padding:0px;
+}
+.clear {
+	clear:both;
+}
+.floatLeft {
+	float:left;
+}
+.floatRight {
+	float:right;
+}
+form li {
+	list-style-type:none;
+}
+img {
+	width: auto;
+}
+/* iPhone form field zoom fix */
+input[type='text'],input[type='number'],textarea,input[type='date'] {
+	font-size: 16px;
+}
+/* Global Elements */
+body {
+
+}
+#container {
+	margin:0px auto;
+	width:auto;
+}
+#wrap {
+	margin: 0px;
+}
+/* Link Stlying */
+
+/* Header Styles */
+header {
+	min-height:45px;
+	max-height:135px;
+	margin:0px;
+	text-align:center;
+	width:100%;
+}
+header p {
+	margin:0px;
+	padding:10px;
+	color:#f1f1f1;
+	text-shadow:none;
+	border-bottom:1px solid rgba(0,0,0,0.25);
+	font-style:italic;
+}
+header #boundingBox {
+	width:100%;
+	position:relative;
+	text-align:center;
+	margin:0px;
+}
+.headLabel {font-size:24px;font-weight: bold;color:#FFF;margin:0px 0px;
+}
+#appTitle {
+	padding:7px 0px 0px 0px;
+	font-size: 24px;
+}
+#ctaButton {
+	background:url(../images/ctaBg.jpg) top center;
+	min-height:100px;
+	max-height:150px;
+	height:auto;
+	width:100%;
+	margin:0px auto;
+}
+.descriptionText{
+	color:#FFF;
+	text-transform: uppercase;
+	float:right;
+	margin:20px 2% 0px;
+	font-size: 14px;
+	height:30px;
+	text-shadow: 1px 1px 5px #000;
+}
+.addHikeButton {
+	clear:right;
+	float:right;
+	margin:0 10px;
+	background:#FFF;
+	border-radius: 7px;
+	padding: 7px 4px;
+	font-size:13px;
+	text-shadow: none!important;
+	border:1px solid #FFF;
+	text-decoration: none!important;
+	box-shadow: 1px 1px 10px black;
+	background: rgb(255,255,255); /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlNWU1ZTUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-8 */
+
+}
+.addHikeButton a{
+		text-decoration: none!important;
+		color:#000!important;
+}
+#addHike {
+	overflow: visible;
+}
+.cta-logo {
+	margin:0px auto;
+	text-align:center;
+}
+.cta-logo-small {
+	margin:7px auto 0px;
+	text-align:center;
+}
+.cta-button {
+	position:relative;
+	left:33px;
+	top: -50px;
+}
+.ctaImg {
+	max-height: 100px;
+	margin-left:2%;
+	opacity: 1.0;
+	float:left;
+	max-width:60%;
+}
+/* Navigation */
+nav {
+	margin:0px;
+	padding:10px 0px;
+	margin:0px 20px;
+}
+nav ul {
+	margin:0px auto;
+	list-style-type:square;
+	color:teal;
+	border-bottom:1px solid #002020;
+	padding:5px 20px;
+	font-size:12px;
+}
+nav ul:hover {
+	list-style-type:square;
+	color:#000;
+}
+nav ul li {
+	display:inline-block;
+	margin:0px 5%;
+}
+#addNew {
+	margin-left: -33px;
+}
+/* Browse Area */
+#browse {
+	width:100%;
+	margin:0px auto;
+	clear:both;
+	min-height:;
+	padding-bottom:10px;
+	height:auto;
+	/* fallback */
+	background-color:#d1d1d1;
+	background:url(../img/browse_bg.jpg);
+	background-repeat:repeat-x;
+	/* Safari 4-5,Chrome 1-9 */
+	background:-webkit-gradient(linear,0% 0%,0% 100%,from(#FFF),to(#d1d1d1));
+	/* Safari 5.1,Chrome 10+*/
+	background:-webkit-linear-gradient(top,#FFF,#d1d1d1);
+	/* Firefox 3.6+*/
+	background:-moz-linear-gradient(top,#FFF,#d1d1d1);
+	/* IE 10 */
+	background:-ms-linear-gradient(top,#FFF,#d1d1d1);
+	/* Opera 11.10+*/
+	background:-o-linear-gradient(top,#FFF,#d1d1d1);
+}
+#browseBox {
+	width:90%;
+	margin:0px auto;
+}
+#browse hr {
+	margin:0px auto;
+}
+#browse #books {
+	font-size:11px;
+	margin:0px;
+}
+#browse #books ul {
+}
+#browse #books li {
+	display:inline-block;
+	list-style-type:;
+	min-width:131px;
+}
+#browse #digital {
+	font-size:11px;
+	margin:0px;
+}
+#browse #digital ul {
+}
+#browse #digital li {
+	display:inline-table;
+	list-style-type:none;
+	min-width: 131px;
+}
+/* Search Area */
+#search {
+	background-color:#d1d1d1;
+	background:url(../img/search_bg.jpg);
+	background-repeat:repeat-x;
+	/* Safari 4-5,Chrome 1-9 */
+	background:-webkit-gradient(linear,0% 0%,0% 100%,from(#414141),to(#5e5e5e));
+	/* Safari 5.1,Chrome 10+*/
+	background:-webkit-linear-gradient(top,#414141,#5e5e5e);
+	/* Firefox 3.6+*/
+	background:-moz-linear-gradient(top,#414141,#5e5e5e);
+	/* IE 10 */
+	background:-ms-linear-gradient(top,#414141,#5e5e5e);
+	/* Opera 11.10+*/
+	background:-o-linear-gradient(top,#414141,#5e5e5e);
+	height:45px;
+	text-align:center;
+	margin:0px auto;
+}
+.footer-search {
+	background:#d1d1d1;
+	background-image:url('../img/spyglass.png');
+	background-repeat:no-repeat;
+	background-position:15px 5px;
+	text-align:left;
+	text-indent:45px;
+	width:90%;
+	margin:10px auto;
+	border:0px solid #FFF;
+	border-radius:7px;
+	height:auto;
+	padding:5px;
+	color: #111;
+}
+/* Form Styles */
+#formBox {margin:0px auto;width:auto;}
+#myHikes01 label {
+	color:#CCC;
+	font-weight: bold;
+	margin-right:15px;
+	text-shadow: none!important;
+	font-size:16px;
+}
+#errors {
+	color:red;
+	height:auto;
+}
+
+#BookeepTitle {
+	width:auto;
+	margin:0px auto;
+
+#platforms {
+	clear:both;
+	float:left;
+	margin: 10px -10px;
+}
+ul#entry {
+margin-left:-40px!important;
+}
+/* Range Rating */
+#stars {
+	width:75%!important;
+	margin:0px auto;
+	text-align:center;
+}
+.rate_0 {
+	width:5%;
+}
+.rate_10 {
+	width: 5%;
+}
+/* Toggle CSS */
+#items {
+	margin:0px auto;
+	max-width:768px;
+	min-width:300px;
+	width:auto;
+	padding-left:2.333%;
+	padding-right:2.333%;
+	color:#FFF;
+}
+#items ul {
+	list-style-type:none;
+	margin-left:-15px;
+	margin-right:10px;
+}
+#items ul li {
+	list-style-type:none;
+	margin-left:0px;
+	background:#AAA;
+	margin-left:-13px;
+	padding-left:33px;
+	word-wrap: break-word;
+}
+#items ul li ul {
+	margin-bottom:25px;
+	padding: 10px 0px;
+}
+/* Footer */
+footer {
+	clear:both;
+	font-size:12px;
+	color:#f1f1f1;
+	padding:5px 15px;
+	margin:0px;
+	text-shadow:none;
+	background: #000;
+}
+
+/* CouchDB CSS */
+#couchList {
+clear:both;
+margin:25px 0px!important;
+}
+
+#myHikeListingsXML {
+clear:both;
+margin:25px 0!important;
+}
+
+
+/* MEDIA QUEREIES */
+@media only screen and (max-width: 450px) {
+img.ctaImg {display:none!important;}
+}
+
+
+/* jqm overwrites */
+.ui-mobile-viewport {overflow-x: visible!important;}
+a.ui-mobile .ui-btn-left, .ui-mobile .ui-btn-right, .ui-btn-left>.ui-btn, .ui-btn-right>.ui-btn {margin-top:10px!important;margin-left:10px!important;}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hike>	
+	<item>
+		<trailName>Sierra's Cove</trailName>
+		<trailDate>2013-05-05</trailDate>
+		<trailLocation>Aurora, CO</trailLocation>
+		<trailDistance>2 miles</trailDistance>
+		<trailNotes>This is Cierra's favorite trail. She likes to say it's name after her, but they spelled it wrong!</trailNotes>
+	</item>
+		<item>
+		<trailName>Aaliyah's Corner</trailName>
+		<trailDate>2007-01-15</trailDate>
+		<trailLocation>Las Angeles, CA</trailLocation>
+		<trailDistance>1 mile</trailDistance>
+		<trailNotes>The road the famous singer's body traveled before it was laid to rest.</trailNotes>
+	</item>
+</hike>

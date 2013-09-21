@@ -1,0 +1,70 @@
+<!--  Add Hike page -->
+<div data-role="page" id="addNewHike" data-add-back-btn="true" data-theme="a">
+  <div data-role="header" data-position="fixed">
+    <div data-role="header" data-position="fixed">
+      <header>
+        <div id="boundingBox">
+          <div id="appTitle"><a href="#home">HikR</a></div>
+        </div>
+      </header>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content-background-color" id="addHike"> 
+    <! -- Error Messages -- >
+    <ul id="errors">
+    </ul>
+    <! -- End Error Messages -- > 
+    
+    <! -- Begin Form -- >
+    <div id="formBox">
+      <form action="#" id="hikeForm" method="post">
+        <li> 
+          
+          <label class="headLabel"><strong>Add New Hike</strong></label>
+        </li>
+        <div data-role="fieldcontain"> 
+          
+          <label for="trailName">Trail Name:</label>
+          <input type="text" name="trailName" id="trailName" class="required" value="" placeholder="(eg. Pikes Peak)"/ required>
+        </div>
+        <div data-role="fieldcontain"> 
+          
+          <label for="trailDate">Date of Hike:</label>
+          <input type="date" name="trailDate" id="trailDate" class="required" value="" placeholder="(eg.01/01/2013)"/ required>
+        </div>
+        <div data-role="fieldcontain"> 
+         
+          <label for="trailLocation">Trail Location:</label>
+          <input type="text" name="trailLocation" id="trailLocation" class="required"  value="" placeholder="(eg. Mountain Springs, CO" required/>
+        </div>
+        <div data-role="fieldcontain"> 
+          
+          <label for="trailDistance">Trail Distance (mi):</label>
+          <input type="text" name="trailDistance" id="trailDistance" value="" class="" placeholder="(eg. 25 miles)"/>
+        </div>
+           <div data-role="fieldcontain"> 
+          <label for="trailNotes">Notes/Comments:</label>
+          <textarea name="trailNotes" id="trailNotes" value="" class="" placeholder="Notes/Comments about the trail."/></textarea>
+        </div>
+        <div data-role="hidden">
+              <input id="key" type="hidden" value=" "/>
+            </div>
+        <input id="submit" type="submit" value="Save Trail">
+      </form>
+        
+    </div>
+    <! -- End Form  -- > 
+  </div>
+      <div data-role="footer" data-position="fixed"> 
+      <!-- Nav -->
+      <div data-role="navbar" data-theme="a">
+        <ul>
+          <li> <a href="#displayHikes" data-icon="grid" class="ui-icon-map"> My Hikes </a> </li>
+          <li> <a href="#info" data-icon="info"> Tips & Info </a> </li>
+        </ul>
+      </div>
+      <!-- Nav --> 
+    </div>
+  </div>
+</div>
+<! -- End Add Hike Page -- > 

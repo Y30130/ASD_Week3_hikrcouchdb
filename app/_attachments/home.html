@@ -1,0 +1,35 @@
+<!-- Start Home Page -->
+<div data-role="page" id="home" data-theme="a">
+  <div data-role="content" data-inset="false" class="ui-content-background-color">
+    <div data-role="header" data-position="fixed">
+      <header>
+        <div id="boundingBox">
+          <div id="appTitle">HikR</div>
+        </div>
+      </header>
+    </div>
+    <! CTA Button -->
+    <div id="ctaButton"> <a href="#addNewHike"> <img src="images/ctaMap.png" class="ctaImg"></a> <span class="descriptionText">Keep Track of Your Hikes</span> <span class="addHikeButton"> <a href="#addNewHike">Add New Hike</a> </span> </div>
+    <!-- List -->
+    <ul data-role="listview" data-inset="true">
+      <li> <a href="#addNewHike" value="addHike" id="addHike"> <img src="images/icon_map.png" class="ui-li-icon"> Add New Hike </a> </li>
+      <li> <a href="#displayHikes" value="myHikes" id="myHikes"> <img src="images/icon_map.png" class="ui-li-icon"> My Hikes </a> </li>
+    </ul>
+  </div>
+  <!-- List --> 
+  <! -- Begin Footer -- >
+  <footer> </footer>
+  <! -- End Footer -->
+  <div data-role="footer" data-position="fixed"> 
+    <!-- Nav -->
+    <div data-role="navbar" data-theme="a">
+      <ul>
+        <li> <a data-ajax="false" href="#addNewHike" data-icon="plus"> New Hike </a> </li>
+        <li> <a href="#displayHikes" data-icon="grid" class="ui-icon-map"> My Hikes </a> </li>
+        <li> <a href="#info" data-icon="info"> Tips & Info </a> </li>
+      </ul>
+    </div>
+    <!-- Nav --> 
+  </div>
+</div>
+<! -- End Home Page -- >

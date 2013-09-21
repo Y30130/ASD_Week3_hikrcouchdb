@@ -1,0 +1,42 @@
+<!--  My Hikes Page -->
+<div data-role="page" id="displayHikes" data-add-back-btn="true" data-theme="a">
+  <div data-role="header" data-position="fixed">
+    <div data-role="header" data-position="fixed">
+      <header>
+        <div id="boundingBox">
+          <div id="appTitle"><a href="#home">HikR</a></div>
+        </div>
+      </header>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content-background-color" id="myHikes">
+  <div class="headLabel">My Hikes</div>
+  <!--  XML and JSON buttons to pull data -->
+          <div class="ui-grid-a">
+              <div class="ui-block-a"><input type="button" value="XML" id="xml"/></div>
+              <div class="ui-block-b"><input type="button" value="JSON" id="json"/></div>
+              <div class="ui-block-a"><input type="button" value="LocalStorage" id="lstorage"/></div>
+              <div class="ui-block-b"><input type="button" value="Clear Storage" id="clearLocalStorage"/></div>
+
+          </div>
+    
+    <div class="clear" style="height:2px;"></div>
+    <div id="localStorageListings">
+                
+    </div>
+    <div id="myHikeListingsJSON">
+    </div>
+    <div id="myHikeListingsXML">
+    </div>
+    
+    </div>   
+				<!-- Content will display information pulled from JSON -->
+			<ul data-role="listview" id="slotList" data-collapsed="false" data-inset="true"></ul>
+      <!-- Repeatable information based on number of items in storage -->
+              	
+    
+ 
+   </div>
+   </div>
+</div>
+<! -- End My Hikes Page -- > 

@@ -1,0 +1,19 @@
+{
+	"hike" : [
+
+		{
+			"trailName"	: "Dead Man's Drop",
+			"trailDate"		: "2013-09-09",
+			"trailLocation"		: "Boulder, CO",
+			"trailDistance"	: "10 miles",
+			"trailNotes"		: "This trail was oustanding and relaxing. I highly recommend it to beginners."
+		},
+		{
+			"trailName"	: "Mountain Vista Glacier Pathway",
+			"trailDate"		: "2013-08-27",
+			"trailLocation"		: "Mountain Vista, CO",
+			"trailDistance"	: "25 miles",
+			"trailNotes"		: "The most difficult trail I have ever encountered in my 20 year experience. It was like a survival TV show trying to stay away from the water and not get caught in the downstream!"
+		}
+	]
+}
