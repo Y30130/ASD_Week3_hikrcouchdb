@@ -2,6 +2,9 @@
   "env": {
     "local": {
       "db": "http://127.0.0.1:5984/hikrcouchdb"
+    },
+  "cloudant": {
+	"db": "https://dhouston:1yentirb@dhouston.cloudant.com/hikrcouchdb"
     }
   }
 }
