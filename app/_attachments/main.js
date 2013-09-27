@@ -1,54 +1,60 @@
-
-$('#addNewHike').on('pageinit', function() {
-		var myForm = $('#hikeForm');
-			myForm.validate({
-				invalidHandler: function(form, validator) {
-					},
-				submitHandler: function(form) {
-				var data = myForm.serializeArray();
-				saveData(this.key);//data
-				}
-		
+$('#displayHikes').live('pageshow', function() { // Couch Code for Display Hikes Page
+	$.couch.db("hikrcouchdb").view("app/trails", { // Call CouchDB Methods using a view
+		success:function(data) {
+			// console.log(data);
+			$('#couchList').empty();
+			$.each(data.rows, function(index, value) {
+				var item = (value.value || value.doc);
+				$('#couchList').append( // pass data back to front end
+					$('<li>').append(
+						$('<a>')
+							.attr("href", "trails.html?trail=" + item.trailName, getData())
+							.text(item.trailName)
+					)
+				);
 			});
-	//save data function
-	var saveData = function(data, key) {
-		// if there is no key, this mean there is a new title, and a new key is necessary
-
-        if (!key) {
-            var id = Math.floor(Math.random() * 10000001);
-        } else {
-            // set id to existing key we're editing so it will save over key
-            // the key is same that's been passed along from the editSubmit event handler
-            // to the validate function, and then passed here into the storekey function.
-            id = key;
-        }
-
-		
-		//get form information and store within an object
-		var hike = {};
-			hike.trailName = [$("#trailName").val()];
-			hike.trailDate = [$("#trailDate").val()];
-			hike.trailLocation = [$("#trailLocation").val()];
-			hike.trailDistance = [$("#trailDistance").val()];
-			hike.trailNotes = [$("#trailNotes").val()];
-			hike.key = [$("#key").val()];
-			
-			//convert object to string
-			localStorage.setItem(id, JSON.stringify(hike));
-			
-			//notify the user, equipment has been added
-			if(localStorage.length === 0){
-				alert("Trail not stored.");
-			} else {
-				alert("Trail added to localStorage!")
-
-			}
-		window.location.reload();
-	};
-
+			$('#couchList').listview().listview('refresh');
+		}
+	});
 });
 
-$('#displayHikes').on('pageinit', function(){
+var urlVars = function() { // get the data back out of the couchDB
+	var urlData = $($.mobile.activePage).data("url");
+	var urlParts = urlData.split('?');
+	var urlPairs = urlParts[1].split('&');
+	var urlValues = {};
+	for (var pair in urlPairs) {
+		var keyValue = urlPairs[pair].split('=');
+		var key = decodeURIComponent(keyValue[0]);
+		var value = decodeURIComponent(keyValue[1]);
+		urlValues[key] = value;
+	}
+	return urlValues;
+}
+
+$('#trail').live('pageshow', function() {
+	var trail = urlVars()["trail"];
+	// console.log(trail);
+	
+});
+
+
+$('#addNewHike').on('pageinit', function() { // Code for Add New Hike Page
+		delete $.validator.methods.date;
+				var myForm = $('#hikeForm');
+	myForm.validate({
+		invalidHandler: function(form, validator) {
+		},
+		submitHandler: function() {
+			var data = myForm.serializeArray();
+			storeData(data);
+		}
+	});
+	
+	
+});
+
+$('#displayHikes').on('pageinit', function(){ // Content Aggregation Code (XML, JSON, etc)...
 	$('#json').on('click', function(){
 		$('#myHikeListingsJSON').empty();
 		$.ajax({
@@ -118,65 +124,6 @@ $('#displayHikes').on('pageinit', function(){
 	});
 });	
 
-$('#displayHikes').on('pageinit', function(){
-	$('#lstorage').on('click', function(){
-		//Clears the field before it repoplulates it with new data
-		//this will prevent duplicates
-		$('#localStorageListings').empty();
-		//for loop to continue through localStorage for all items.
-		for( var i=0, ls = localStorage.length; i < ls; i++) {
-		var key = localStorage.key(i);
-		var value = localStorage.getItem(key);
-		
-		var objectString = JSON.parse(value);
-		//console.log(objectString);
-
-			var subList = $(''+
-				'<div class="lstorageListing">' +
-					'<h3>' + objectString.trailName +'</h3>' +
-					'<span>' + '<strong>Trail Date:</strong> ' + objectString.trailDate +'</span><hr />' +
-					'<span>' + '<strong>Trail Location:</strong> ' + objectString.trailLocation +'</span><hr />' +
-					'<span>' + '<strong>Trail Distance:</strong> ' + objectString.trailDistance +'</span><hr />' +
-					'<span>' + '<strong>Trail Notes:</strong> ' + objectString.trailNotes +'</span><hr />' +
-					'<div class="ui-block-b">' + '<input type="button" class="delete" value="Delete" id="' + key + '"/>' + '</div>'+
-					// '<div class="ui-block-b">' + '<input type="button" class="edit" value="Edit" id="' + key + '"/>' + '</div>'+
-					'<br />'+
-				'</div>'
-				
-			).appendTo('#localStorageListings');
-			
-			
-			//edit function
-			/* $('.edit').on('click', function(){
-			var value = localStorage.getItem(this.key);
-				$.mobile.changePage('#addItem');
-				var eKey = $(this).attr('#id');
-				$('#trailName').val(objectString.trailName[0]);
-				$('#trailDate').val(objectString.trailDate[0]);
-				$('#trailLocation').val(objectString.trailLocation[0]);
-				$('#trailDistance').val(objectString.trailDistance[0]);
-            	$('#trailNotes').val(objectString.trailNotes[0]);
-				$('#key').val(objectString.value[0]);
-			});*/
-			
-			// Could Not Get Edit Function to Work Properly :(
-
-			//delete function
-			$('.delete').on('click', function(){
-				var answer = ('Are you sure you want to delete this item?');
-				if (answer){
-					var dKey = this.id;
-					localStorage.removeItem(dKey);
-					window.location.reload();
-				}
-
-				
-			});
-
-		}
-	})
-});
-
 //This will clear the localstorage
 $("#clearLocalStorage").on('click', function() {
 	if(localStorage.length === 0){
@@ -190,3 +137,157 @@ $("#clearLocalStorage").on('click', function() {
     }
     ;
 });
+
+
+// Functions 
+// STORE DATA FUNCTION, refactored for Hikr	couchDB
+var storeData = function(data){
+	var key = $('#submitHike').data('key');
+	var rev = $('#submitHike').data('_rev');
+	console.log(key);
+	console.log(rev);
+	var hike = {};
+
+	if (rev) {		
+		hike._id = key;
+		hike._rev = rev;
+	}
+	hike._id = "trail:" + data[0].value; 
+	hike.trailName = data[0].value.trailName;
+	hike.trailDate = data[1].value.trailDate;
+	hike.trailLocation = data[2].value.trailLocation;
+	hike.trailDistance = data[3].value.trailDistance;
+	hike.trailNotes = data[4].value.trailNotes;
+	hike.rev = data[5].value.rev;
+
+	console.log(hike);
+
+	$.couch.db('hikrcouchdb').saveDoc(hike, {
+		success: function(hike){
+			alert('Trail Saved!');
+			resetForm();
+			$('#submitHike').attr('value', 'Add Trail').removeData('key').removeData('rev');
+			$.mobile.changePage('#home');
+		}
+	});
+};
+
+var getData = function(){ // Get Data to Populate Form Fields
+	
+	var labels = ["Trail Name: ", "Date of Hike: ", "Trail Location: ", "Trail Location: ", "Notes/Comments: ", "Rev: "];
+	
+		var appendLocation = $('#trailItems');
+
+	 $.couch.db('hikrcouchdb').view("app/trails", {
+		success: function(data){
+			// console.log(data);
+			$('#trailItems').empty();
+			$.each(data.rows, function(index, hike) {
+				var makeEntry = $('<div>')
+					.attr('data-role', 'collapsible')
+					.attr('data-mini', 'true')
+					.attr('id', hike.key)
+					.appendTo(appendLocation)
+				;
+
+				var makeH3 = $('<h3>')
+					.html(hike.value.trailName + ' - ' + hike.value.trailDate)
+					.appendTo(makeEntry)
+				;
+
+				var makeDetailsList = $('<ul>').appendTo(makeEntry);
+				var labelCounter = 0;
+				for (var k in hike.value) {
+					var makeLi = $('<li>')
+						.html(labels[labelCounter] + hike.value[k])
+						.appendTo(makeDetailsList)
+					;
+					labelCounter++;
+				}
+				
+				var buttonHolder = $('<div>').attr('class', 'ui-grid-a').appendTo(makeEntry);
+				var editButtonDiv = $('<div>').attr('class', 'ui-block-a').appendTo(buttonHolder);
+				var removeButtonDiv = $('<div>').attr('class', 'ui-block-b').appendTo(buttonHolder);
+				var editButton = $('<a>')
+					.attr('data-role', 'button')
+					.attr('href', '#addNewHike')
+					.html('Edit')
+					.data('key', hike.key)
+					.data('rev', hike._rev)
+					.appendTo(editButtonDiv)
+					.on('click', editHike)	
+				;
+				var removeButton = $('<a>')
+					.attr('data-role', 'button')
+					.attr('href', '#')
+					.html('Remove')
+					.data('key', hike.key)
+					.data('rev', hike._rev)
+					.appendTo(removeButtonDiv)
+					.on('click', removeHike)
+				;
+				// console.log(hike.key);
+				console.log(hike.rev);
+				$(makeEntry).trigger('create');
+			});
+			$(appendLocation).trigger('create');
+		},
+		reduce: false	
+	});
+};
+
+var editHike = function (){
+	var key = "trail:" + $(this).data('key');
+	var rev = $(this).data('rev');
+	// console.log(rev);
+	// console.log(key);
+	$.couch.db('hikrcouchdb').openDoc(key, {
+		success: function(hike) {
+			$('#_id').val(hike._id);
+			$('#_rev').val(hike.rev);
+			$('#trailName').val(hike.trailName);
+			$('#trailDate').val(hike.trailDate);
+			$('#trailLocation').val(hike.trailLocation);
+			$('#trailDistance').val(hike.trailDistance);
+			$('#trailNotes').val(hike.trailNotes);
+			$('#submitHike').attr('value', 'Update Trail').data('key', key).data('rev', rev);
+		}
+	});
+};
+
+
+
+var	removeHike = function (){
+	var ask = confirm("Are you sure you want to delete this trail?");
+	if (ask) {
+		var doc = {
+				'_id': "trail:"+$(this).data('key'),
+		};
+		$.couch.db('hikrcouchdb').removeDoc(doc, {
+			success: function(data){
+				alert("Trail Removed!");
+				console.log('');
+				window.location.reload();
+			}
+		});
+	} else {
+		alert("Trail was not removed.");
+	}		
+};
+
+var clearData = function(){
+	if (localStorage.length === 0) {
+			alert("There are no saved hikes to clear.");
+		} else {
+			localStorage.clear();
+			alert("All saved hikes have been cleared.");
+			window.location.reload();
+			return false;
+		}
+};
+
+function resetForm () {
+	$( '#hikeForm' ).each(function(){
+    this.reset();
+});
+};

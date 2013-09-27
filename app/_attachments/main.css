@@ -42,11 +42,10 @@ body {
 
 /* Header Styles */
 header {
-	min-height:45px;
-	max-height:135px;
 	margin:0px;
 	text-align:center;
 	width:100%;
+	padding:10px 0;
 }
 header p {
 	margin:0px;

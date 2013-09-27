@@ -18,8 +18,12 @@
 <link rel="stylesheet" href="Hikr.css" />
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile.structure-1.3.2.min.css" />
 <!-- JavaScript is normally at the end of the body, except for Modernizr which enables HTML5 elements & feature detects -->
-<script src="modernizr.custom.min.js">
-                            </script>
+<script src="modernizr.custom.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"  type="text/javascript"></script>
+<script type="text/javascript" src="jquery.validate.min.js"></script>
+<script type="text/javascript" src="jquery.couch.js"></script>
 <body>
 <!-- Start Home Page -->
 <div data-role="page" id="home" data-theme="a">
@@ -84,15 +88,18 @@
           
           <label class="headLabel"><strong>Add New Hike</strong></label>
         </li>
+        <div data-role="hidden">
+              <input id="_id" type="hidden" value="trail:" />
+              
+            </div>
         <div data-role="fieldcontain"> 
-          
           <label for="trailName">Trail Name:</label>
-          <input type="text" name="trailName" id="trailName" class="required" value="" placeholder="(eg. Pikes Peak)"/ required>
+          <input type="text" name="trailName" id="trailName" class="required" value="" placeholder=""/ required>
         </div>
         <div data-role="fieldcontain"> 
           
           <label for="trailDate">Date of Hike:</label>
-          <input type="date" name="trailDate" id="trailDate" class="required" value="" placeholder="(eg.01/01/2013)"/ required>
+          <input type="date" name="trailDate" id="trailDate" class="required" value="" type="date" placeholder="01-01-2014" required>
         </div>
         <div data-role="fieldcontain"> 
          
@@ -102,16 +109,14 @@
         <div data-role="fieldcontain"> 
           
           <label for="trailDistance">Trail Distance (mi):</label>
-          <input type="text" name="trailDistance" id="trailDistance" value="" class="" placeholder="(eg. 25 miles)"/>
+          <input type="text" name="trailDistance" id="trailDistance" value="" class="" placeholder="10"/>
         </div>
            <div data-role="fieldcontain"> 
           <label for="trailNotes">Notes/Comments:</label>
-          <textarea name="trailNotes" id="trailNotes" value="" class="" placeholder="Notes/Comments about the trail."/></textarea>
+          <textarea name="trailNotes" id="trailNotes" value="" class="" placeholder="Memorable moments, landmarks or events."/></textarea>
         </div>
-        <div data-role="hidden">
-              <input id="key" type="hidden" value=" "/>
-            </div>
-        <input id="submit" type="submit" value="Save Trail">
+        
+        <input id="submitHike" type="submit" value="Save Trail">
       </form>
         
     </div>
@@ -146,25 +151,29 @@
   </div>
   <div data-role="content" class="ui-content-background-color" id="myHikes">
   <div class="headLabel">My Hikes</div>
+  <div class="clear" style="height:25px;"></div>
+  <ul id="trailItems" data-role="listview">
+   
+   </ul>
       <div class="clear" style="height:25px;"></div>
   <div class="clear" style="height:25px;"></div>
   <!--  XML and JSON buttons to pull data -->
           <div class="ui-grid-a">
-              <div class="ui-block-a"><input type="button" value="XML" id="xml"/></div>
+              <!-- <div class="ui-block-a"><input type="button" value="XML" id="xml"/></div>
               <div class="ui-block-b"><input type="button" value="JSON" id="json"/></div>
-              <div class="ui-block-a"><input type="button" value="couchDb" id="couchDb"/></div>
+              <div class="ui-block-a"><input type="button" value="couchDb" id="couchDb"/></div> -->
               
           </div>
     
     <div class="clear" style="height:25px;"></div>
     <ul id="couchList" data-filter="true"></ul>
-    <div class="clear" style="height:25px;"></div>
+    <div class="clear"></div>
     <ul id="myHikeListingsXML" data-filter="true">
     </ul>
-    <div class="clear" style="height:25px;"></div>
+    <div class="clear"></div>
     <ul id="myHikeListingsJSON" data-filter="true">
     </ul>
-    <div class="clear" style="height:25px;"></div>
+    <div class="clear"></div>
      <ul id="localStorageListings">         
     </ul>
     
@@ -174,8 +183,20 @@
       <!-- Repeatable information based on number of items in storage -->
               	
     
- 
+ <div data-role="footer" data-position="fixed"> 
+    <!-- Nav -->
+    <div data-role="navbar" data-theme="a">
+      <ul>
+        <li> <a href="#addNewHike" data-icon="plus"> New Hike </a> </li>
+        <li> <a href="#displayHikes" data-icon="grid" class="ui-icon-map ui-btn-active"> My Hikes </a> </li>
+        <li> <a href="#info" data-icon="info"> Tips & Info </a> </li>
+      </ul>
+    </div>
+    <!-- Nav --> 
+  </div>
+
    </div>
+   
    </div>
 </div>
 <! -- End My Hikes Page -- > 
@@ -204,9 +225,9 @@
     <!-- Nav -->
     <div data-role="navbar" data-theme="a">
       <ul>
-        <li> <a data-ajax="false" href="#addNewHike" data-icon="plus"> New Hike </a> </li>
+        <li> <a href="#addNewHike" data-icon="plus"> New Hike </a> </li>
         <li> <a href="#displayHikes" data-icon="grid" class="ui-icon-map"> My Hikes </a> </li>
-        <li> <a href="#info" data-icon="info"> Tips & Info </a> </li>
+        <li> <a href="#info" data-icon="info" class="ui-btn-active"> Tips & Info </a> </li>
       </ul>
     </div>
     <!-- Nav --> 
@@ -215,12 +236,37 @@
 <! -- End Info Page -- >
 
 
-<script src="http://code.jquery.com/jquery-1.10.1.min.js" type="text/javascript"></script>
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-<script src="http://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"  type="text/javascript"></script>
-<script type="text/javascript" src="jquery.validate.min.js"></script>
-<script src="main.js"></script>
+<div data-role="page" id="trails" data-theme="a" data-add-back-btn="true">
+<div data-role="header" data-position="fixed">
+      <header>
+        Trail Details
+      </header>
+    </div>
 
+  <div data-role="content" data-inset="false" class="ui-content-background-color">
+
+   <ul id="trailItems" data-role="listview">
+   
+   </ul>
+ 
+  </div>
+  <!-- List --> 
+  
+  <div data-role="footer" data-position="fixed"> 
+    <!-- Nav -->
+    <div data-role="navbar" data-theme="a">
+      <ul>
+        <li> <a href="#addNewHike" data-icon="plus"> New Hike </a> </li>
+        <li> <a href="#displayHikes" data-icon="grid" class="ui-icon-map"> My Hikes </a> </li>
+        <li> <a href="#info" data-icon="info"> Tips & Info </a> </li>
+      </ul>
+    </div>
+    <!-- Nav --> 
+  </div>
+</div>
+<! -- End Home Page -- >
+
+
+<script src="main.js"></script>
 </body>
 </html>
